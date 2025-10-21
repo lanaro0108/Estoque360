@@ -11,7 +11,7 @@
 O **Estoque 360** tem como objetivo **automatizar e organizar o gerenciamento de estoques** em lojas de moda.  
 Nosso sistema busca resolver problemas comuns como desorganização, erros manuais, falta de relatórios e interfaces pouco intuitivas.  
 
-> 🎯 “Controle total, design simples e eficiência em cada clique.”
+> 🎯 “O trabalho manual está fora de moda”
 
 <hr>
 
@@ -41,41 +41,14 @@ Criar um **sistema web responsivo** que permita:
 | Integrante | Função / Contribuição |
 |-------------|------------------------|
 | Ana Luiza Dore Pelisson | Levantamento e documentação |
-| Ana Sofhia Leonardi de Morais | Pesquisa e modelagem |
-| Gabriela Machado | Design e requisitos |
-| Lucas Combinato Gato | Banco de dados e modelagem |
-| **Murilo Dovigo Bastos** | Desenvolvimento e integração |
-| Pedro Antonio Cruz Lanaro | Análise e documentação |
+| Ana Sofhia Leonardi de Morais | Pesquisa e prototipagem |
+| Gabriela Machado | Pesquisa e requisitos |
+| Lucas Combinato Gato | Pesquisa, requisitos e programador |
+| **Murilo Dovigo Bastos** | UX/UI Designer e front-end |
+| Pedro Antonio Cruz Lanaro | Análise de dados, programador e front-end |
 
 📚 Curso: **Análise e Desenvolvimento de Sistemas (ADS – I1D35)**  
 📅 Período: **2025 – 2026**
-
-<hr>
-
-## ⚙️ Requisitos do Sistema
-
-### 🧠 Funcionais
-- Registrar, excluir e atualizar itens do estoque  
-- Controlar entrada e saída de produtos  
-- Pesquisar e organizar por especificidades  
-- Interface intuitiva e funcional  
-
-### 🚀 Não Funcionais
-- Resposta em até **5 segundos (95% das vezes)**  
-- Interface minimalista e tutorial opcional  
-- Login com autenticação em duas etapas  
-- Totalmente responsivo  
-
-<hr>
-
-## 🔢 Priorização (MoSCoW)
-
-| Requisito | Prioridade |
-|------------|-------------|
-| Rapidez | ✅ **Must** |
-| Interface | ⚙️ **Should** |
-| Login | ✅ **Must** |
-| Responsividade | ✅ **Must** |
 
 <hr>
 
@@ -94,49 +67,15 @@ O sistema será considerado aceito quando:
 - O público-alvo testar e aprovar a ferramenta;  
 - Feedback positivo confirmar que os principais problemas foram solucionados.
 
-<hr>
-
-## 🗓️ Linha do Tempo do Projeto
-
-| Data | Atividade |
-|------|------------|
-| 16/09 | Início do projeto, definição do problema e escolha do **MeisterTask** como ferramenta ágil |
-| 23/09 | Criação das perguntas e levantamento de requisitos |
-| 30/09 | Finalização do formulário de pesquisa |
-| 07/10 | Primeiro checkpoint com o escopo inicial |
-| 14/10 | Nova logo, paleta de cores e revisão do questionário |
-| 21/10 | Levantamento de requisitos, documentação da visita técnica, finalização da logo e início do MER/DER |
+  <hr>
 
 🧩 Ferramenta Ágil: [MeisterTask – Projeto Estoque 360](https://www.meistertask.com/app/project/tLehPZ2h/controle-de-estoque)
 
 <hr>
 
-## 🧠 Referências Utilizadas
-
-- [TOTVS – Tipos de Estoque](https://www.totvs.com/blog/gestao-varejista/tipos-de-estoque/)  
-- [Funções e Problemas em Controle de Estoque](https://encurtador.com.br/XpT5t)  
-- [Controle de Estoque de Roupa – Kimika](https://moda.kimika.com.br/materia/controle-de-estoque-de-roupa)  
-- [Exemplo de Sistema – eGestor](https://egestor.com.br/recursos/sistema-de-controle-financeiro.php)
-
-<hr>
-
-## 🧾 Documentação do Grupo
-
-📁 **Arquivos Principais**
-- Documento de levantamento de requisitos  
-- Relatórios semanais  
-- MER e DER  
-- Logotipo e identidade visual  
-- Formulário de levantamento (Forms)  
-
-📎 **Link para o Forms de Pesquisa**  
-👉 [Acessar Formulário](https://forms.office.com/Pages/DesignPageV2.aspx?subpage=design&FormId=SxwFsZQ7q0GUQec6cjQv3aR0E45bOYBAks4odg8Lk0hUOFVMWkxJNElZM1RYSzk4RjE5SkRKQ0c1Ui4u&Token=db17836a3b5c471b853d390c631d3a46)
-
-<hr>
-
 ## 💬 Comentários Finais
 
-> “Organizar estoque é organizar o sucesso.”  
+> “Automatização está na moda.”  
 > O **Estoque 360** nasce da necessidade de modernizar o setor varejista da moda, oferecendo **eficiência, controle e simplicidade** em um único sistema.
 
 ---
