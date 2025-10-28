@@ -25,17 +25,6 @@ Atualmente, muitas lojas de roupa ainda utilizam métodos manuais para gerenciar
 
 <hr>
 
-## 💡 Solução Proposta
-
-Criar um **sistema web responsivo** que permita:
-- 📦 Registrar, editar e excluir itens do estoque;  
-- 🔍 Pesquisar por produto, categoria, marca, modelo ou sazonalidade;  
-- ➕ Controlar entradas e saídas com atualização automática de quantidades;  
-- 🔐 Fazer login seguro com verificação em duas etapas;  
-- ⚙️ Garantir rapidez, interface limpa e fácil usabilidade.
-
-<hr>
-
 ## 👥 Equipe
 
 | Integrante | Função / Contribuição |
