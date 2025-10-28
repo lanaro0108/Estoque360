@@ -30,7 +30,7 @@ Atualmente, muitas lojas de roupa ainda utilizam métodos manuais para gerenciar
 | Integrante | Função / Contribuição |
 |-------------|------------------------|
 | Ana Luiza Dore Pelisson | Levantamento e documentação |
-| Ana Sofhia Leonardi de Morais | Pesquisa e prototipagem |
+| Ana Sofhia Leonardi de Morais | Pesquisa e escopo |
 | Gabriela Machado | Pesquisa e requisitos |
 | Lucas Combinato Gato | Pesquisa, requisitos e programador |
 | **Murilo Dovigo Bastos** | UX/UI Designer e front-end |
