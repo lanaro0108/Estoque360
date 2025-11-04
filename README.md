@@ -1,4 +1,5 @@
-<h1 align="center">🧥 Estoque 360</h1>
+<h1 align="center">Estoque360</h1>
+<p align="center"> <img src="https://github.com/lanaro0108/Estoque360/blob/main/Assets/logo/Estoque360_Logos/estoque360_master.png" alt="Estoque360 Logo" width="200"/> </p> <p align="center"> <img src="https://img.shields.io/badge/Python-3.11-blue?logo=python" /> <img src="https://img.shields.io/badge/JavaScript-ES6-yellow?logo=javascript" /> <img src="https://img.shields.io/badge/License-MIT-green" /> <img src="https://img.shields.io/badge/Status-Ativo-success" /> </p> <br>
 
 <p align="center">
   <b>Um sistema de controle de estoque moderno e intuitivo voltado para lojas de roupa</b> 👗🛍️  
