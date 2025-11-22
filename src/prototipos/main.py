@@ -107,3 +107,64 @@ if st.button("Cadastrar o Produto", key="gerar_codigos"):
 if st.session_state.lista_codigos:
     st.markdown("Código(s) cadastrados:")
     st.write(st.session_state.lista_codigos)
+
+
+# chatbot - tem q colocar nome ainda
+from openai import OpenAI
+import os
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+st.sidebar.markdown("---")
+st.sidebar.subheader("🤖 ChatBot Estoque360")
+
+if "messages" not in st.session_state:
+    st.session_state.messages = [
+        {"role": "system", "content": """
+Você é o Assistente Oficial do Sistema Estoque360.
+
+Função:
+- Ajudar usuários a cadastrar produtos, gerar códigos, escolher categorias, tamanhos, cores e marcas.
+- Explicar como funciona cada etapa do formulário.
+- Ajudar a entender erros do sistema (ex: campo vazio, tamanho não selecionado, marca faltando).
+- Dar orientações claras e objetivas, sempre focadas no funcionamento do Estoque360.
+
+Regras do seu comportamento:
+1. Seja educado, rápido e direto.
+2. Não invente informações fora do contexto do sistema.
+3. Responda sempre como se estivesse integrado ao Estoque360.
+4. Sempre tente entender o que o usuário quer fazer (cadastrar, corrigir erro, entender categoria, etc).
+5. Se houver possível erro no cadastro, aponte a causa e diga como resolver.
+6. Use linguagem simples e prática.
+
+Funções do sistema conhecidas:
+- Categorias: Acessórios, Calçados, Vestuário.
+- Cada categoria possui tipos específicos de produto.
+- Gêneros disponíveis: Masculino, Feminino, Unissex.
+- Sistema gera códigos automáticos AAAA-000.
+- Validação impede cadastro sem marca, cor, tamanho (quando aplicável) e tipo de produto.
+- Quantidade permite vários códigos gerados.
+- Histórico fica armazenado no session_state.lista_codigos.
+
+Seu objetivo:
+Guiar o usuário como um atendente real do Estoque360.
+"""}
+
+    ]
+
+# Caixa de texto
+pergunta = st.sidebar.text_input("Digite sua pergunta:")
+
+if pergunta:
+    st.session_state.messages.append({"role": "user", "content": pergunta})
+
+    resposta = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=st.session_state.messages
+    )
+
+    resposta_texto = resposta.choices[0].message.content
+
+    st.session_state.messages.append({"role": "assistant", "content": resposta_texto})
+
+    st.sidebar.markdown(f"**Bot:** {resposta_texto}")
