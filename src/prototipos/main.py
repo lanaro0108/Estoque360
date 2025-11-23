@@ -5,6 +5,10 @@ import string
 
 with open("estoque360_master.png", "rb") as f:
     imagem = base64.b64encode(f.read()).decode()
+with open("estoque360_icone__1_-removebg-preview.png", "rb") as f:
+    icone = f.read()
+
+st.set_page_config(page_title="Estoque 360 - Cadastro de produtos",page_icon=icone)
 
 st.markdown(
     f"""
