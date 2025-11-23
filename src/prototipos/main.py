@@ -116,11 +116,18 @@ import os
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 st.sidebar.markdown("---")
-st.sidebar.subheader("🤖 ChatBot Estoque360")
+st.sidebar.subheader("🤖 Assistente Estoque360")
 
-if "messages" not in st.session_state:
-    st.session_state.messages = [
-        {"role": "system", "content": """
+if "mostrar_chat" not in st.session_state:
+    st.session_state.mostrar_chat = False
+
+if st.sidebar.button("🛍️ Clique para falar com o Assistente", key="icone_chat"):
+    st.session_state.mostrar_chat = not st.session_state.mostrar_chat
+
+if st.session_state.mostrar_chat:
+    if "messages" not in st.session_state:
+        st.session_state.messages = [
+            {"role": "system", "content": """
 Você é o Assistente Oficial do Sistema Estoque360.
 
 Função:
@@ -150,21 +157,19 @@ Seu objetivo:
 Guiar o usuário como um atendente real do Estoque360.
 """}
 
-    ]
+        ]
+    pergunta = st.sidebar.text_input("Digite sua pergunta:", key="pergunta_chat")
 
-# Caixa de texto
-pergunta = st.sidebar.text_input("Digite sua pergunta:")
+    if pergunta:
+        st.session_state.messages.append({"role": "user", "content": pergunta})
 
-if pergunta:
-    st.session_state.messages.append({"role": "user", "content": pergunta})
+        resposta = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=st.session_state.messages
+        )
 
-    resposta = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=st.session_state.messages
-    )
+        resposta_texto = resposta.choices[0].message.content
 
-    resposta_texto = resposta.choices[0].message.content
+        st.session_state.messages.append({"role": "assistant", "content": resposta_texto})
 
-    st.session_state.messages.append({"role": "assistant", "content": resposta_texto})
-
-    st.sidebar.markdown(f"**Bot:** {resposta_texto}")
+        st.sidebar.markdown(f"**Bot:** {resposta_texto}")
