@@ -3,9 +3,9 @@ import base64
 import random
 import string
 
-with open("estoque360_master.png", "rb") as f:
+with open("imagens/estoque360_master.png", "rb") as f:
     imagem = base64.b64encode(f.read()).decode()
-with open("estoque360_icone__1_-removebg-preview.png", "rb") as f:
+with open("imagens/estoque360_icone__1_-removebg-preview.png", "rb") as f:
     icone = f.read()
 
 st.set_page_config(page_title="Estoque 360 - Cadastro de produtos",page_icon=icone)
@@ -116,8 +116,11 @@ if st.session_state.lista_codigos:
 # chatbot - tem q colocar nome ainda
 from openai import OpenAI
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+client = OpenAI(api_key=os.getenv("api_estoque360_01"))
 
 st.sidebar.markdown("---")
 st.sidebar.subheader("🤖 Assistente Estoque360")
