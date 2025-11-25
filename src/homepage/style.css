@@ -16,6 +16,9 @@
   --shadow-soft: 0 15px 35px rgba(2, 4, 15, 0.08);
   --shadow-strong: 0 25px 55px rgba(10, 116, 218, 0.18);
   --shadow-very-strong: 0 15px 35px rgba(0, 0, 0, 0.3);
+  --card-width: 340px;
+  /* Largura fixa para garantir o cálculo correto */
+  --card-gap: 2rem;
 }
 
 *,
@@ -32,7 +35,7 @@ body {
   line-height: 1.6;
   min-height: 100vh;
 }
-      
+
 img {
   display: block;
   max-width: 100%;
@@ -54,7 +57,8 @@ main {
   top: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* logo à esquerda, botão à direita */
+  justify-content: space-between;
+  /* logo à esquerda, botão à direita */
   padding: 0 2rem;
   box-shadow: var(--shadow-very-strong);
   backdrop-filter: blur(6px);
@@ -66,6 +70,7 @@ main {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 .logo:hover {
   transform: scale(1.12);
 }
@@ -73,7 +78,8 @@ main {
 /* bloco dos links ao lado do logo */
 .nav-links {
   display: flex;
-  gap: 1.5rem; /* espaço entre links */
+  gap: 1.5rem;
+  /* espaço entre links */
 }
 
 /* botão à direita */
@@ -108,7 +114,8 @@ main {
   bottom: 0;
   border-radius: 20px;
   width: 0;
-  transition: width 0.3s ease; /* anima entrar e sair */
+  transition: width 0.3s ease;
+  /* anima entrar e sair */
 }
 
 .nav-links a:hover::before {
@@ -121,7 +128,8 @@ main {
   justify-content: space-between;
   gap: 3rem;
   flex-wrap: wrap;
-  padding: 0 4rem;    /* controla “respiro” lateral aqui */
+  padding: 0 4rem;
+  /* controla “respiro” lateral aqui */
   /* nada de left / position / margin negativa */
 }
 
@@ -147,7 +155,8 @@ main {
   gap: 1em;
 }
 
-.about-button, .download-button {
+.about-button,
+.download-button {
   font-size: 16px;
   padding: 0.7em 1.5rem;
   background-color: var(--orange-300);
@@ -211,7 +220,9 @@ main {
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* cards */
@@ -229,7 +240,9 @@ main {
   width: 2.4rem;
 }
 
-.card1, .card2, .card3 {
+.card1,
+.card2,
+.card3 {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -239,8 +252,9 @@ main {
   box-shadow: var(--shadow-soft);
   text-align: left;
   transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease, background-color 0.18s ease, z-index 0.18s;
-  
+
 }
+
 .card1:hover,
 .card2:hover,
 .card3:hover {
@@ -256,13 +270,17 @@ main {
   color: var(--orange-300);
 }
 
+.gray-star {
+  color: #ccc;
+}
+
 .rating-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
   margin: 2.5rem auto 0;
   max-width: 1100px;
-  padding: 0 1rem;
+  padding: 0;
 }
 
 .rating-card {
@@ -277,9 +295,11 @@ main {
 }
 
 .rating-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(0.5px);
   box-shadow: 0 18px 34px rgba(59, 130, 246, 0.15);
   filter: brightness(1.02);
+  filter: brightness(0.9) blur(2px);
+  filter: blur(0);
 }
 
 .rating-header {
@@ -293,7 +313,7 @@ main {
   height: 3rem;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(0,0,0,0.06);
+  border: 2px solid rgba(0, 0, 0, 0.06);
 }
 
 .rating-stars {
@@ -308,4 +328,366 @@ main {
   font-size: 0.98rem;
   line-height: 1.5;
   text-align: left;
+}
+
+/* Container Principal */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 3rem auto;
+  position: relative;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+/* Janela de visualização */
+.carousel-viewport {
+  overflow: hidden;
+  flex-grow: 1;
+  width: auto;
+  padding: 4.5rem 0;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.rating-section {
+  display: flex;
+  gap: var(--card-gap);
+  width: max-content;
+  margin: 0 auto;
+  will-change: transform;
+}
+
+.rating-card {
+  width: var(--card-width);
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: var(--radius-md, 12px);
+  box-shadow: var(--shadow-soft, 0 4px 6px rgba(0, 0, 0, 0.1));
+  padding: 1.5rem;
+
+  /* ESTADO PADRÃO (Desfocado) */
+  opacity: 0.5;
+  filter: blur(4px);
+  transform: scale(0.9);
+  transition: all 0.5s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ESTADO ATIVO (Focado/Centro) */
+.rating-card.active {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1.05);
+  /* Levemente maior para destaque */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  /* Fica por cima dos outros */
+}
+
+/* Botões de Navegação */
+.carousel-btn {
+  background: #fff;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+  cursor: pointer;
+
+  /* CRUCIAL PARA CENTRALIZAR */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  /* Remove padding padrão do navegador que atrapalha */
+
+  font-size: 1.2rem;
+  color: var(--orange-300, #f59e0b);
+  transition: transform 0.2s, background 0.2s;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+/* Ajuste Fino (O Pulo do Gato) */
+/* Isso corrige o centro óptico da seta */
+.carousel-btn .fa-chevron-right {
+  margin-left: 4px;
+  /* Empurra um pouco pra direita */
+  margin-top: 2px;
+  /* Se estiver muito pra cima, ajusta aqui */
+}
+
+.carousel-btn .fa-chevron-left {
+  margin-right: 4px;
+  /* O mesmo para a seta da esquerda, mas ao contrário */
+  margin-top: 2px;
+}
+
+.carousel-btn:hover {
+  background: var(--orange-300, #f59e0b);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* Mantém o estilo interno dos cards igual */
+.rating-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.rating-photo {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.rating-stars {
+  color: var(--orange-300, #f59e0b);
+}
+
+.rating-text {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+
+/* Classe para animar o movimento */
+.rating-section.smooth-transition {
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.rating-card.active:hover {
+  filter: brightness(1.02) blur(0);
+}
+
+
+/* price section */
+
+
+/* Container Geral da Seção */
+.pricing-section {
+  text-align: center;
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title-pricing {
+  font-size: 2.5rem;
+  color: var(--blue-900);
+  margin-bottom: 3rem;
+}
+
+/* Container dos Cards (Flexbox) */
+.pricing-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  /* Faz todos terem a mesma altura */
+  gap: 2rem;
+  flex-wrap: wrap;
+  /* Permite quebrar linha em mobile */
+}
+
+/* Estilo Base do Card */
+.pricing-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Destaque para o Card do Meio (Gold) */
+.pricing-card.popular {
+  border: 2px solid var(--orange-300);
+  transform: scale(1.1);
+  z-index: 2;
+}
+
+.pricing-card.best {
+  border: 2px solid var(--blue-500);
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.pricing-card.popular:hover {
+  transform: scale(1.08);
+}
+
+/* Tag Mais Popular */
+.popular-tag,
+.best-tag {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange-300);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Tag diamond mais melhor */
+.best-tag {
+  background: var(--blue-500);
+}
+
+/* Cabeçalho do Card */
+.card-header {
+  margin-bottom: 1.5rem;
+}
+
+.plan-title {
+  font-size: 1.8rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.plan-subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+  min-height: 40px;
+}
+
+/* Cores dos Títulos */
+.plan-basic .plan-title {
+  color: var(--text-dark);
+}
+
+.plan-gold .plan-title {
+  color: var(--orange-300);
+}
+
+.plan-diamond .plan-title {
+  color: var(--blue-500);
+}
+
+/* Preço */
+.pricing-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  color: var(--blue-900);
+}
+
+.currency {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-right: 4px;
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+.amount {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.period {
+  align-self: flex-end;
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 8px;
+  margin-left: 4px;
+}
+
+/* Lista de Benefícios */
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.pricing-features li i {
+  color: var(--blue-500);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.pricing-features li.disabled {
+  color: #ccc;
+  text-decoration: line-through;
+}
+
+.pricing-features li.disabled i {
+  color: #ccc;
+}
+
+/* Botão */
+.plan-button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: var(--neutral-50);
+  color: var(--blue-900);
+  border: 2px solid transparent;
+}
+
+/* Cores específicas dos botões */
+.plan-basic .plan-button {
+  background-color: #e5e7eb;
+}
+
+.plan-basic .plan-button:hover {
+  background-color: #d1d5db;
+}
+
+.plan-gold .plan-button {
+  background-color: var(--orange-300);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(252, 186, 4, 0.4);
+}
+
+.plan-gold .plan-button:hover {
+  background-color: var(--orange-500);
+  transform: translateY(-2px);
+}
+
+.plan-diamond .plan-button {
+  background-color: var(--blue-500);
+  color: #fff;
+}
+
+.plan-diamond .plan-button:hover {
+  background-color: var(--blue-600);
 }
