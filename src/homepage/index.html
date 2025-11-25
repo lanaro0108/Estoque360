@@ -17,10 +17,10 @@
         </a>
 
         <nav class="nav-links">
-            <a href="#">Link One</a>
-            <a href="#">Link Two</a>
-            <a href="#">Link Three</a>
-            <a href="#">Link Fourth</a>
+            <a href="#feature-section">Sobre</a>
+            <a href="#price-section">Planos</a>
+            <a href="#faq-section">FAQ</a>
+            <a href="#footer-section">Contatos</a>
         </nav>
 
         <div class="fishing-section">
@@ -47,7 +47,7 @@
             </div>
         </section>
 
-        <div class="feature-section">
+        <div class="feature-section" id="feature-section">
             <div class="feature-heading">
                 <h2 class="title-feature">Porque escolher</h2>
                 <img src="../../Assets/logo/Estoque360_Logos/estoque360_secondary (1).png" alt="Estoque360"
@@ -191,7 +191,7 @@
 
         <!-- INICIO DO PRICING SECTION -->
 
-        <section class="pricing-section">
+        <section class="pricing-section" id="price-section">
             <h2 class="title-pricing">
                 <span id="pricing-typewriter-text"></span><span class="typewriter-cursor">|</span>
             </h2>
@@ -272,84 +272,149 @@
         </section>
 
 
-        <div class="faq">
-            <h2 class="faq-title">FAQ</h2>
-            <h3 class="faq-explanation">Perguntas frequentes.</h3>
-            <div class="faq1">
-                <img src="../../Assets/icons/faq1_icon.png" alt="Icone FAQ1" class="iconfaq1">
-                <h4 class="question">
-                    Isso Ã© uma pergunta 1.
-                </h4>
-                <p class="answerhidden">
-                    Isso Ã© a resposta. Resposta. Resposta. Resposta. Resposta. Resposta. Resposta. Resposta.
-                </p>
+        <!-- INICIO DO FAQ SECTION -->
+        <section class="faq-container" id="faq-section">
+            <div class="faq-intro">
+                <h2 class="faq-title">
+                    <span id="faq-typewriter-text"></span><span class="typewriter-cursor">|</span>
+                </h2>
+
+                <p class="faq-subtitle">Tire suas dúvidas sobre o Estoque360.</p>
             </div>
-            <div class="faq2">
-                <img src="../../Assets/icons/faq2_icon.png" alt="Icone FAQ2" class="iconfaq2">
-                <h4 class="question">
-                    Isso Ã© uma pergunta 2.
-                </h4>
-                <p class="answerhidden">
-                    Isso Ã© a resposta. Resposta. Resposta. Resposta. Resposta. Resposta. Resposta. Resposta.
-                </p>
+
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <button class="faq-header">
+                        <div class="faq-question-group">
+                            <img src="../../Assets/icons/faq1_icon.svg" alt="Icone" class="icon-faq">
+                            <span class="question-text">Quais são os requisitos mínimos de sistema?</span>
+                        </div>
+                        <i class="fa fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-body">
+                        <p class="answer-text">
+                            O Estoque360 é uma solução baseada em nuvem (SaaS). Você só precisa de um navegador moderno
+                            (Chrome, Firefox, Edge) e uma conexão estável com a internet. Não há requisitos pesados de
+                            hardware no lado do usuário.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-header">
+                        <div class="faq-question-group">
+                            <img src="../../Assets/icons/faq2_icon.svg" alt="Icone" class="icon-faq">
+                            <span class="question-text">Como o Estoque360 garante a segurança dos dados?</span>
+                        </div>
+                        <i class="fa fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-body">
+                        <p class="answer-text">
+                            Utilizamos criptografia SSL/TLS para proteger as transmissões. As informações são
+                            armazenadas em servidores seguros com backups automáticos. O acesso restrito e autenticação
+                            de dois níveis (2FA) garantem proteção total.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-header">
+                        <div class="faq-question-group">
+                            <img src="../../Assets/icons/faq3_icon.svg" alt="Icone" class="icon-faq">
+                            <span class="question-text">Preciso instalar em um servidor local?</span>
+                        </div>
+                        <i class="fa fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-body">
+                        <p class="answer-text">
+                            Não. O Estoque360 é totalmente baseado em nuvem. Você pode acessá-lo de qualquer lugar, a
+                            qualquer momento, sem necessidade de instalações complexas ou servidores locais.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-header">
+                        <div class="faq-question-group">
+                            <img src="../../Assets/icons/faq4_icon.svg" alt="Icone" class="icon-faq">
+                            <span class="question-text">Posso importar dados de planilhas?</span>
+                        </div>
+                        <i class="fa fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-body">
+                        <p class="answer-text">
+                            Sim. Oferecemos um modelo de importação padrão que permite subir seus dados via arquivos
+                            CSV, facilitando a transição de planilhas Excel ou sistemas antigos.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-header">
+                        <div class="faq-question-group">
+                            <img src="../../Assets/icons/faq5_icon.svg" alt="Icone" class="icon-faq">
+                            <span class="question-text">Como funciona o suporte técnico?</span>
+                        </div>
+                        <i class="fa fa-chevron-down faq-arrow"></i>
+                    </button>
+                    <div class="faq-body">
+                        <p class="answer-text">
+                            Oferecemos suporte técnico premium via chat e e-mail. Além disso, todas as atualizações de
+                            recursos e segurança são automáticas e gratuitas para todos os assinantes.
+                        </p>
+                    </div>
+                </div>
+
             </div>
-            <div class="faq3">
-                <img src="../../Assets/icons/faq3_icon.png" alt="Ãcone FAQ3" class="iconfaq3">
-                <h4 class="question">
-                    Isso Ã© uma pergunta 3.
-                </h4>
-                <p class="answerhidden">
-                    Isso Ã© a resposta. Resposta. Resposta. Resposta. Resposta. Resposta. Resposta. Resposta.
-                </p>
-            </div>
-            <div class="faq4">
-                <img src="../../Assets/icons/faq4_icon.png" alt="Ãcone FAQ4" class="iconfaq4">
-                <h4 class="question">
-                    Isso Ã© uma pergunta 4.
-                </h4>
-                <p class="answerhidden">
-                    Isso Ã© a resposta. Resposta. Resposta. Resposta. Resposta. Resposta. Resposta. Resposta.
-                </p>
-            </div>
-            <div class="faq1">
-                <img src="../../Assets/icons/faq5_icon.png" alt="I­cone FAQ5" class="iconfaq5">
-                <h4 class="question">
-                    Isso Ã© uma pergunta 5.
-                </h4>
-                <p class="answerhidden">
-                    Isso Ã© a resposta. Resposta. Resposta. Resposta. Resposta. Resposta. Resposta. Resposta.
-                </p>
-            </div>
-        </div>
+        </section>
     </main>
-    <footer class="footer-container">
-        <img src="../Assets/logo/Estoque360_Logos/estoque360_icon.png" alt="Logo do Estoque360" class="logo-footer">
-        <a href="#" class="link1-footer">Link One</a>
-        <a href="#" class="link2-footer">Link Two</a>
-        <a href="#" class="link3-footer">Link Three</a>
-        <a href="#" class="link4-footer">Link Fourth</a>
-        <div class="instagram-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
-            </svg>
+    <footer class="footer-container" id="footer-section">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="../../Assets/logo/Estoque360_Logos/estoque360_icon.png" alt="Logo do Estoque360"
+                    class="logo-footer">
+            </div>
+
+            <nav class="footer-nav">
+                <a href="#top">Início</a>
+                <a href="#feature-section">Recursos</a>
+                <a href="#price-section">Preços</a>
+                <a href="#footer-section">Contato</a>
+            </nav>
+
+            <div class="footer-social">
+                <a href="https://muskiguess.pages.dev" target="_blank" aria-label="Instagram"
+                    class="social-link instagram">
+                    <img src="../../Assets/icons/instagram-icon.svg" alt="Instagram" class="social-icon-img">
+                </a>
+
+                <a href="https://github.com/lanaro0108/Estoque360" target="_blank" aria-label="GitHub"
+                    class="social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                </a>
+            </div>
         </div>
-        <div class="github-icon">
-            <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-        </div>
-        <div class="license">
+
+        <div class="footer-bottom">
             <p>&copy; 2025 Estoque360. Todos os direitos reservados.</p>
-            <a href="#" class="privacy">Políticas de privacidade.</a>
-            <a href="#" class="terms">Termos de servi&ccedil;o</a>
+            <div class="legal-links">
+                <a href="#">Políticas de privacidade</a>
+                <span class="separator">•</span>
+                <a href="#">Termos de serviço</a>
+            </div>
         </div>
     </footer>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script defer src="smooth-scroll.js"></script>
     <script src="carousel.js"></script>
     <script src="typewriter.js"></script>
+    <script src="FAQ.js"></script>
+    <script src="dynamic_nav.js"></script>
+    <script src="animation.js"></script>
 </body>
 
 </html>

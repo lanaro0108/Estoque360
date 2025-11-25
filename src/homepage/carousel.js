@@ -3,6 +3,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const originalCards = Array.from(document.querySelectorAll('.rating-card'));
     const btnPrev = document.querySelector('.prev-btn');
     const btnNext = document.querySelector('.next-btn');
+    const container = document.querySelector('.carousel-container'); // Seleciona o container pai
+
+    // --- NOVO: CURSOR DESFOCADOR (BLUR SPOT) ---
+    if (container) {
+        // Cria o elemento do spot via JS para não sujar o HTML
+        const blurSpot = document.createElement('div');
+        blurSpot.classList.add('blur-spot');
+        container.appendChild(blurSpot);
+
+        // Faz o spot seguir o mouse
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            blurSpot.style.left = `${x}px`;
+            blurSpot.style.top = `${y}px`;
+        });
+    }
+    // --------------------------------------------
 
     // Configurações
     const cardWidth = 340; // Largura do card (igual ao CSS)

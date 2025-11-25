@@ -72,7 +72,7 @@ main {
 }
 
 .logo:hover {
-  transform: scale(1.12);
+  transform: scale(1.1);
 }
 
 /* bloco dos links ao lado do logo */
@@ -80,6 +80,15 @@ main {
   display: flex;
   gap: 1.5rem;
   /* espaço entre links */
+}
+
+/* Classe que será adicionada via Javascript quando passar pelo escuro */
+.nav-links a.on-dark {
+  color: var(--neutral-50) !important;
+  /* Seu branco off-white */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  /* Sombra para garantir leitura */
+  transition: color 0.3s ease;
 }
 
 /* botão à direita */
@@ -103,6 +112,7 @@ main {
 
 .nav-links a {
   position: relative;
+  transition: color 0.2s ease;
 }
 
 .nav-links a::before {
@@ -115,11 +125,14 @@ main {
   border-radius: 20px;
   width: 0;
   transition: width 0.3s ease;
-  /* anima entrar e sair */
 }
 
 .nav-links a:hover::before {
-  width: 60%;
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--blue-500);
 }
 
 .main-section {
@@ -236,7 +249,8 @@ main {
   padding: 0 1rem;
 }
 
-.feature-cards img {
+.feature-cards img,
+.faq-container img {
   width: 2.4rem;
 }
 
@@ -259,9 +273,6 @@ main {
 .card2:hover,
 .card3:hover {
   transform: scale(1.03);
-  backdrop-filter: blur(100px);
-  box-shadow: 0 18px 34px rgba(59, 130, 246, 0.15);
-  filter: brightness(1.03);
 }
 
 /* Parte dos ratings/avaliações */
@@ -397,7 +408,6 @@ main {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
   cursor: pointer;
 
-  /* CRUCIAL PARA CENTRALIZAR */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -415,9 +425,7 @@ main {
 /* Isso corrige o centro óptico da seta */
 .carousel-btn .fa-chevron-right {
   margin-left: 4px;
-  /* Empurra um pouco pra direita */
   margin-top: 2px;
-  /* Se estiver muito pra cima, ajusta aqui */
 }
 
 .carousel-btn .fa-chevron-left {
@@ -512,7 +520,7 @@ main {
 }
 
 .pricing-card:hover {
-  transform: translateY(-5px);
+  transform: scale(1.01);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
@@ -530,7 +538,11 @@ main {
 }
 
 .pricing-card.popular:hover {
-  transform: scale(1.08);
+  transform: scale(1.11);
+}
+
+.pricing-card.best:hover {
+  transform: scale(1.06);
 }
 
 /* Tag Mais Popular */
@@ -690,4 +702,327 @@ main {
 
 .plan-diamond .plan-button:hover {
   background-color: var(--blue-600);
+}
+
+
+/* FAQ - PERGUNTAS FREQUENTES - IMPLEMENTAR JAVASCRIPT */
+/* Container Principal do FAQ */
+.faq-container {
+  padding: 5rem 1.5rem;
+  max-width: 900px;
+  /* FAQ fica melhor um pouco mais estreito para leitura */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.faq-intro {
+  margin-bottom: 3rem;
+}
+
+.faq-title {
+  font-size: 2.5rem;
+  color: var(--blue-900);
+  margin-bottom: 0.5rem;
+}
+
+.faq-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* Espaço entre as perguntas */
+}
+
+/* Item Individual do FAQ */
+.faq-item {
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  /* Importante para a animação */
+  transition: box-shadow 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* O Cabeçalho (Botão Clicável) */
+.faq-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.faq-header:hover {
+  background-color: #fafafa;
+}
+
+/* Grupo Esquerdo (Ícone + Pergunta) */
+.faq-question-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon-faq {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  /* Impede o ícone de esmagar */
+}
+
+.question-text {
+  font-size: 1.1rem;
+  color: var(--blue-900);
+  line-height: 1.4;
+}
+
+/* Seta */
+.faq-arrow {
+  color: var(--orange-300);
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+  margin-left: 1rem;
+}
+
+/* Corpo da Resposta (Animação) */
+.faq-body {
+  max-height: 0;
+  /* Começa fechado */
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: #fff;
+}
+
+.answer-text {
+  margin: 0;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  /* Padding só aparece quando aberto */
+  padding-left: calc(1.5rem + 28px + 1rem);
+  /* Alinha texto com a pergunta (pula o ícone) */
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* --- CLASSE ATIVA (Adicionada via JS) --- */
+
+/* Gira a seta */
+.faq-item.active .faq-arrow {
+  transform: rotate(180deg);
+}
+
+/* Muda cor da pergunta */
+.faq-item.active .question-text {
+  color: var(--blue-500);
+}
+
+/* FOOTER */
+
+
+.footer-container {
+  background-color: var(--blue-900);
+  color: var(--neutral-50);
+  padding: 3rem 1rem 1rem;
+  margin-top: 4rem;
+}
+
+/* Parte Superior do Footer (Logo, Links, Social) */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 0.2rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* Logo */
+.footer-brand .logo-footer {
+  width: 150px;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.footer-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-nav a {
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.footer-nav a:hover {
+  color: var(--orange-300);
+}
+
+.footer-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--orange-300);
+  transition: width 0.3s ease;
+}
+
+.footer-nav a:hover::after {
+  width: 100%;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  line-height: 1;
+  text-decoration: none;
+
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--neutral-50);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.social-icon-img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  filter: invert(1);
+  transition: filter 0.3s ease;
+}
+
+.social-link:hover {
+  background-color: var(--orange-300);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.social-link:hover .social-icon-img {
+  filter: brightness(0) invert(1);
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  fill: currentColor;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  /* Linha divisória sutil */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.legal-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.legal-links a {
+  transition: color 0.2s;
+}
+
+.legal-links a:hover {
+  color: var(--orange-300);
+}
+
+.separator {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* --- ANIMAÇÃO DE SCROLL (EASE IN / FADE IN) --- */
+
+/* Estado Inicial (Invisível e deslocado para baixo) */
+.fade-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  /* Move 30px para baixo */
+  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+  /* Otimização de performance */
+}
+
+/* Estado Final (Visível e na posição original) */
+.fade-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Se preferir que elementos dentro de grids (cards) apareçam em cascata (um por um)
+   podemos adicionar um pequeno delay baseado na ordem, mas o observer natural 
+   geralmente já cria esse efeito visualmente agradável conforme o scroll. 
+*/
+
+/* Garante que o usuário não veja nada piscando no carregamento inicial */
+@media (prefers-reduced-motion: reduce) {
+  .fade-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
