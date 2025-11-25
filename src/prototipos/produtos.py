@@ -1,0 +1,54 @@
+from database import conectar
+
+def pegar_id(table, coluna, valor):
+    db = conectar()
+    cursor = db.cursor()
+    cursor.execute(f"SELECT id FROM {table} WHERE {coluna}=?", (valor,))
+    resultado = cursor.fetchone()
+    cursor.close()
+    db.close()
+    return resultado[0] if resultado else None
+
+def salvar_produto(categoria, tipo_produto, genero, marca, cor, tamanho, precocusto, precovenda):
+    id_categoria = pegar_id("categoria", "nome", categoria)
+    id_tipo = pegar_id("tipo_produto", "nome", tipo_produto)
+    id_genero = pegar_id("generos", "genero", genero)
+    id_marca = pegar_id("marcas", "nomemarca", marca)
+    id_cor = pegar_id("cores", "nomecor", cor)
+    id_tamanho = pegar_id("tamanho", "tamanho", tamanho)
+
+    db = conectar()
+    cursor = db.cursor()
+    sql = """
+        INSERT INTO produtos (id_categoria, id_tipo_produto, id_genero, id_marca, id_cor, id_tamanho, precocusto, precovenda)
+        VALUES (?,?,?,?,?,?,?,?)
+    """
+    cursor.execute(sql, (id_categoria, id_tipo, id_genero, id_marca, id_cor, id_tamanho, precocusto, precovenda))
+    db.commit()
+    produto_id = cursor.lastrowid
+    cursor.close()
+    db.close()
+    return produto_id
+
+def salvar_estoque(produto_id, quantidade):
+    db = conectar()
+    cursor = db.cursor()
+    sql = "INSERT INTO estoque_atual (produto_id, quantidade) VALUES (?, ?)"
+    cursor.execute(sql, (produto_id, quantidade))
+    db.commit()
+    cursor.close()
+    db.close()
+
+def atualizar_estoque(produto_id, quantidade):
+    db = conectar()
+    cursor = db.cursor()
+    cursor.execute("SELECT quantidade FROM estoque_atual WHERE produto_id=?", (produto_id,))
+    resultado = cursor.fetchone()
+    if resultado:
+        nova_qtd = resultado[0] + quantidade
+        cursor.execute("UPDATE estoque_atual SET quantidade=? WHERE produto_id=?", (nova_qtd, produto_id))
+    else:
+        cursor.execute("INSERT INTO estoque_atual (produto_id, quantidade) VALUES (?,?)", (produto_id, quantidade))
+    db.commit()
+    cursor.close()
+    db.close()
