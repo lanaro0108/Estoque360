@@ -238,10 +238,6 @@ main {
     }
 }
 
-/* cards */
-
-/* ... resto do seu código ... */
-
 .feature-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
