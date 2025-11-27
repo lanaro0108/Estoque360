@@ -93,15 +93,20 @@ except FileNotFoundError:
     st.set_page_config(page_title="Estoque 360 - Cadastro de produtos")
     imagem = ""
 
+logo = ""
+if imagem:
+    logo = f"<img src='data:image/png;base64,{imagem}' width='90' style='margin-right:15px;'>"
+
 st.markdown(
     f"""
-    <div style="display: flex; align-items: center; justify-content: center;">
-        {f'<img src="data:image/png;base64,{imagem}" width="90" style="margin-right: 15px;">' if imagem else ''}
-        <h1 style="margin: 0;">Estoque360</h1>
-    </div>
-    """,
+<div style='display:flex; align-items:center; justify-content:center;'>
+    {logo}
+    <h1 style='margin:0;'>Estoque360</h1>
+</div>
+""",
     unsafe_allow_html=True
 )
+
 def fetch_options(table, column):
     db = conectar()
     cursor = db.cursor()
@@ -344,5 +349,6 @@ elif pagina == "Estoque":
     db.close()
 
     st.table(estoque)
+
 
 
