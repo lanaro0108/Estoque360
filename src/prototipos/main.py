@@ -67,7 +67,7 @@ Guiar o usuário como um atendente real do Estoque360.
 """}
 
         ]
-    pergunta = st.sidebar.text_input("Digite sua pergunta:", key="pergunta_chat")
+    pergunta = st.sidebar.text_input("Digite sua pergunta:", key="pergunta_chat", placeholder = "Digite sua pergunta...")
 
     if pergunta:
         st.session_state.messages.append({"role": "user", "content": pergunta})
@@ -344,4 +344,5 @@ elif pagina == "Estoque":
     db.close()
 
     st.table(estoque)
+
 
