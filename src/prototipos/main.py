@@ -1,8 +1,8 @@
 #Main
 import streamlit as st
 from produtos import salvar_produto, salvar_estoque, atualizar_estoque, pegar_id
-from fornecedores import registrar_compra
-from clientes import registrar_venda
+from fornecedores import registrar_compra, registrar_fornecedor
+from clientes import registrar_venda, registrar_cliente
 from database import conectar, criar_tabelas
 import base64
 import os
@@ -27,7 +27,7 @@ st.sidebar.subheader("🤖 Assistente Estoque360")
 if "mostrar_chat" not in st.session_state:
     st.session_state.mostrar_chat = False
 
-if st.sidebar.button("🛍️ Clique para falar com o Assistente", key="icone_chat"):
+if st.sidebar.button("Clique para falar com o Assistente", key="icone_chat"):
     st.session_state.mostrar_chat = not st.session_state.mostrar_chat
 
 st.sidebar.markdown("<hr>", unsafe_allow_html=True)
@@ -131,7 +131,7 @@ if pagina == "Cadastro de Produtos":
 
     # Fetch dynamic options
     categorias = fetch_options("categoria", "nome")
-    generos = ["Masculino", "Feminino", "Unissex"]
+    generos = ["masculino", "feminino", "unissex"]
 
     categoria = st.radio("Categoria", categorias)
     
@@ -144,11 +144,11 @@ if pagina == "Cadastro de Produtos":
     cor = st.text_input("Cor", placeholder="Digite a cor do produto...")
     tamanho = ""
    
-    if categoria == "Calçados":
+    if categoria == "calçados":
         tamanhos_calcados = [str(t) for t in range(33, 47)]
         tamanho = st.radio("Selecione o tamanho do calçado:", tamanhos_calcados, horizontal=True)
 
-    elif categoria == "Vestuário":
+    elif categoria == "vestuário":
         tamanhos_letras = ["PP", "P", "M", "G", "GG", "XG", "XXG", "XXXG"]
         tamanhos_numericos = [str(t) for t in range(34, 61, 2)]
         tamanhos_infantil = [str(t) for t in range(2, 18, 2)]
@@ -160,15 +160,13 @@ if pagina == "Cadastro de Produtos":
             "jaqueta", "blazer", "regata"
         ]
 
-        tipo_produto_norm = tipo_produto.lower() if isinstance(tipo_produto, str) else ""
-
-        if tipo_produto_norm in categorias_numericos:
+        if tipo_produto in categorias_numericos:
             tamanho = st.radio("Selecione o tamanho (numérico):", tamanhos_numericos, horizontal=True)
 
-        elif tipo_produto_norm in categorias_letras:
+        elif tipo_produto in categorias_letras:
             tamanho = st.radio("Selecione o tamanho (letras):", tamanhos_letras, horizontal=True)
 
-        elif tipo_produto_norm == "vestidos":
+        elif tipo_produto == "vestidos":
             tamanho = st.radio(
                 "Selecione o tamanho:",
                 tamanhos_infantil + tamanhos_letras,
@@ -195,32 +193,34 @@ elif pagina == "Compras de Fornecedores":
 
     with tab2:
         st.subheader("Cadastrar Novo Fornecedor")
-        f_cnpj = st.text_input("CNPJ", placeholder="Digite o CNPJ do fornecedor...")
-        f_nome = st.text_input("Nome", placeholder="Digite o nome do fornecedor...")
-        f_cep = st.text_input("CEP", placeholder="Digite o CEP do fornecedor...")
-        f_numero = st.text_input("Número", placeholder="Digite o número do endereço...")
-        f_comp = st.text_input("Complemento", placeholder="Digite o complemento do endereço...")
-        f_tel = st.text_input("Telefone", placeholder="Digite o telefone do fornecedor...")
-        f_email = st.text_input("Email", placeholder="Digite o email do fornecedor...")
+        f_cnpj = st.text_input("CNPJ", placeholder="00.000.000/0000-00")
+        f_nome = st.text_input("Nome", placeholder="Insira o nome do fornecedor...")
+        f_cep = st.text_input("CEP", placeholder="00000-000")
+        f_numero = st.text_input("Número", placeholder="Insira o número...")
+        f_comp = st.text_input("Complemento", placeholder="Insira o complemento...")
+        f_tel = st.text_input("Telefone", placeholder="(00) 00000-0000")
+        f_email = st.text_input("Email", placeholder="email@exemplo.com")
         
         if st.button("Salvar Fornecedor"):
-            st.warning("Funcionalidade de cadastro de fornecedor não implementada.")
+            if f_cnpj and f_nome and f_cep:
+                registrar_fornecedor(f_cnpj, f_nome, f_cep, f_numero, f_comp, f_tel, f_email)
+                st.success("Fornecedor cadastrado!")
+            else:
+                st.warning("Preencha os campos obrigatórios.")
 
     with tab1:
         st.subheader("Registrar Compra")
-        cnpj_fornecedor = st.text_input("CNPJ do fornecedor", key="compra_cnpj", placeholder="Digite o CNPJ do fornecedor...")
+        cnpj_fornecedor = st.text_input("CNPJ do fornecedor", key="compra_cnpj", placeholder="00.000.000/0000-00")
         
         st.write("Adicionar Produtos")
         if "produtos_compra" not in st.session_state:
             st.session_state.produtos_compra = []
 
-        c_prod_nome = st.text_input("Nome do Produto (Busca por Tipo)", placeholder="Digite o nome do produto...")
+        c_prod_nome = st.text_input("Nome do Produto (Busca por Tipo)") # Simplified search
         c_qtd = st.number_input("Quantidade", min_value=1, step=1, key="c_qtd")
         c_valor = st.number_input("Valor Unitário", min_value=0.0, key="c_valor")
 
         if st.button("Adicionar Item"):
-            # Try to find product ID by type name (simplified logic)
-            # In a real app, we would have a better search or dropdown
             db = conectar()
             cursor = db.cursor()
             cursor.execute("SELECT p.id FROM produtos p JOIN tipo_produto tp ON p.id_tipo_produto = tp.id WHERE tp.nome LIKE ?", (f"%{c_prod_nome}%",))
@@ -257,20 +257,24 @@ elif pagina == "Vendas a Clientes":
     
     with tab2:
         st.subheader("Cadastrar Novo Cliente")
-        c_cpf = st.text_input("CPF", placeholder="Digite o CPF do cliente...")
-        c_nome = st.text_input("Nome", placeholder="Digite o nome do cliente...")
-        c_cep = st.text_input("CEP", placeholder="Digite o CEP do cliente...")
-        c_numero = st.text_input("Número", placeholder="Digite o número do endereço...")
-        c_comp = st.text_input("Complemento", placeholder="Digite o complemento do endereço...")
-        c_tel = st.text_input("Telefone", placeholder="Digite o telefone do cliente...")
-        c_email = st.text_input("Email", placeholder="Digite o email do cliente...")
+        c_cpf = st.text_input("CPF", placeholder="000.000.000-00")
+        c_nome = st.text_input("Nome", placeholder="Insira o nome do cliente...")
+        c_cep = st.text_input("CEP", placeholder="00000-000")
+        c_numero = st.text_input("Número", placeholder="Insira o número...")
+        c_comp = st.text_input("Complemento", placeholder="Insira o complemento...")
+        c_tel = st.text_input("Telefone", placeholder="(00) 00000-0000")
+        c_email = st.text_input("Email", placeholder="email@exemplo.com")
         
         if st.button("Salvar Cliente"):
-            st.warning("Funcionalidade de cadastro de cliente não implementada.")
+            if c_cpf and c_nome and c_cep:
+                registrar_cliente(c_cpf, c_nome, c_cep, c_numero, c_comp, c_tel, c_email)
+                st.success("Cliente cadastrado!")
+            else:
+                st.warning("Preencha os campos obrigatórios.")
 
     with tab1:
         st.subheader("Registrar Venda")
-        cpf_cliente = st.text_input("CPF do Cliente", key="venda_cpf", placeholder="Digite o CPF do cliente...")
+        cpf_cliente = st.text_input("CPF do Cliente", key="venda_cpf", placeholder="000.000.000-00")
         
         # Fetch payment methods
         db = conectar()
@@ -285,7 +289,7 @@ elif pagina == "Vendas a Clientes":
         if "produtos_venda" not in st.session_state:
             st.session_state.produtos_venda = []
 
-        v_prod_nome = st.text_input("Nome do Produto (Busca por Tipo)", key="v_prod", placeholder="Digite o nome do produto...")
+        v_prod_nome = st.text_input("Nome do Produto (Busca por Tipo)", key="v_prod", placeholder="Insira o nome do tipo do produto...")
         v_qtd = st.number_input("Quantidade", min_value=1, step=1, key="v_qtd")
         v_valor = st.number_input("Valor Unitário", min_value=0.0, key="v_valor")
 
@@ -323,7 +327,6 @@ elif pagina == "Estoque":
     st.header("Estoque Atual")
 
     db = conectar()
-    # SQLite cursor returns tuples by default, to get dicts we need row_factory
     db.row_factory = sqlite3.Row
     cursor = db.cursor()
     cursor.execute("""
@@ -338,5 +341,4 @@ elif pagina == "Estoque":
     estoque = [dict(row) for row in cursor.fetchall()]
     cursor.close()
     db.close()
-
     st.table(estoque)
