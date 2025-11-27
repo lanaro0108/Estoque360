@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const steps = [
             { text: 'Somos especialistas em gestão.', eraseTo: 'Somos '.length, pauseAfter: 1200 },
             { text: 'Somos parceiros do seu time.', eraseTo: 'Somos '.length, pauseAfter: 800 },
-            { text: 'Somos o Estoque360', eraseTo: 'Somos o Estoque360'.length, pauseAfter: 850 },
-            { text: 'Somos o Estoque360°', eraseTo: 0, pauseAfter: 5500 },
+            { text: 'Somos o Estoque360', eraseTo: 'Somos o Estoque360'.length, pauseAfter: 800 },
+            { text: 'Somos o Estoque360°.', eraseTo: 0, pauseAfter: 5500 },
         ];
 
         const typeSpeed = 52;
