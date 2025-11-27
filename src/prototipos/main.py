@@ -1,7 +1,6 @@
 #Main
 import streamlit as st
 import os
-st.write("DEBUG KEY:", os.getenv("OPENAI_API_KEY"))
 from produtos import salvar_produto, salvar_estoque, atualizar_estoque, pegar_id
 from fornecedores import registrar_compra, registrar_fornecedor
 from clientes import registrar_venda, registrar_cliente
@@ -345,3 +344,4 @@ elif pagina == "Estoque":
     db.close()
 
     st.table(estoque)
+
