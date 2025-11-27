@@ -10,12 +10,17 @@ def criar_tabelas():
     # Enable foreign keys
     cursor.execute("PRAGMA foreign_keys = ON;")
 
+    # 1. Tabelas Básicas
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS generos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        genero TEXT NOT NULL CHECK(genero IN ('Masculino', 'Feminino', 'Unissex'))
+        genero ENUM NOT NULL CHECK(genero IN ('masculino', 'feminino', 'unissex'))
     )
     """)
+    
+    cursor.execute("INSERT OR IGNORE INTO generos (genero) VALUES ('Masculino')")
+    cursor.execute("INSERT OR IGNORE INTO generos (genero) VALUES ('Feminino')")
+    cursor.execute("INSERT OR IGNORE INTO generos (genero) VALUES ('Unissex')")
     
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS marcas (
@@ -37,8 +42,9 @@ def criar_tabelas():
         nome TEXT NOT NULL UNIQUE
     )
     """)
-
-    cursor.execute("INSERT OR IGNORE INTO categoria (nome) VALUES ('Calçados'), ('Vestuário')")
+    
+    # Insert initial categories if not exist
+    cursor.execute("INSERT OR IGNORE INTO categoria (nome) VALUES ('calçados'), ('vestuário')")
 
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS tipo_produto (
@@ -49,26 +55,27 @@ def criar_tabelas():
     )
     """)
     
+    # Insert initial types (lowercase for consistency with app)
     initial_types = [
-        ('Tênis', 1),
-        ('Chuteira', 1),
-        ('Sapatênis', 1),
-        ('Sandália', 1),
-        ('Chinelo', 1),
-        ('Bota', 1),
-        ('Sapato Social', 1),
-        ('Crocs', 1),
+        ('tênis', 1),
+        ('chuteira', 1),
+        ('sapatênis', 1),
+        ('sandália', 1),
+        ('chinelo', 1),
+        ('bota', 1),
+        ('sapato social', 1),
+        ('crocs', 1),
 
-        ('Calças', 2),
-        ('Camisas', 2),
-        ('Camisetas', 2),
-        ('Blusa Moletom', 2),
-        ('Vestidos', 2),
-        ('Shorts', 2),
-        ('Saia', 2),
-        ('Jaqueta', 2),
-        ('Blazer', 2),
-        ('Regata', 2),
+        ('calças', 2),
+        ('camisas', 2),
+        ('camisetas', 2),
+        ('blusa moletom', 2),
+        ('vestidos', 2),
+        ('shorts', 2),
+        ('saia', 2),
+        ('jaqueta', 2),
+        ('blazer', 2),
+        ('regata', 2),
     ]
 
     for nome, cat_id in initial_types:
@@ -82,6 +89,7 @@ def criar_tabelas():
     )
     """)
 
+    # Insert initial sizes
     sizes_calcado = [str(i) for i in range(33, 47)]
     for s in sizes_calcado:
         cursor.execute("INSERT OR IGNORE INTO tamanho (tamanho, tipo) VALUES (?, 'calcado')", (s,))
@@ -128,6 +136,7 @@ def criar_tabelas():
     )
     """)
 
+    # 2. Tabelas de Endereço
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS estados (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -136,7 +145,7 @@ def criar_tabelas():
     )
     """)
     
-    estados = [
+    estates = [
         ('AC','Acre'),('AL','Alagoas'),('AM','Amazonas'),('AP','Amapá'),
         ('BA','Bahia'),('CE','Ceará'),('DF','Distrito Federal'),('ES','Espírito Santo'),
         ('GO','Goiás'),('MA','Maranhão'),('MG','Minas Gerais'),('MS','Mato Grosso do Sul'),
@@ -145,7 +154,7 @@ def criar_tabelas():
         ('RO','Rondônia'),('RR','Roraima'),('RS','Rio Grande do Sul'),
         ('SC','Santa Catarina'),('SE','Sergipe'),('SP','São Paulo'),('TO','Tocantins')
     ]
-    for sigla, nome in estados:
+    for sigla, nome in estates:
         cursor.execute("INSERT OR IGNORE INTO estados (sigla, nomeestado) VALUES (?, ?)", (sigla, nome))
 
     cursor.execute("""
@@ -204,6 +213,7 @@ def criar_tabelas():
     )
     """)
 
+    # 3. Contatos e Pessoas
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS telefones (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -244,6 +254,7 @@ def criar_tabelas():
     )
     """)
 
+    # 4. Vendas e Compras
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS forma_pgto (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
