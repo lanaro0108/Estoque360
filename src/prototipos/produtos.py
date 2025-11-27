@@ -10,13 +10,31 @@ def pegar_id(table, coluna, valor):
     return resultado[0] if resultado else None
 
 def salvar_produto(categoria, tipo_produto, genero, marca, cor, tamanho, precocusto, precovenda):
-    id_categoria = pegar_id("categoria", "nome", categoria)
-    id_tipo = pegar_id("tipo_produto", "nome", tipo_produto)
-    id_genero = pegar_id("generos", "genero", genero)
-    id_marca = pegar_id("marcas", "nomemarca", marca)
-    id_cor = pegar_id("cores", "nomecor", cor)
-    id_tamanho = pegar_id("tamanho", "tamanho", tamanho)
+    # Helper to get or create ID
+    def get_or_create(table, col, val):
+        if not val: return None
+        id_val = pegar_id(table, col, val)
+        if id_val: return id_val
+        
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute(f"INSERT INTO {table} ({col}) VALUES (?)", (val,))
+        db.commit()
+        new_id = cursor.lastrowid
+        cursor.close()
+        db.close()
+        return new_id
 
+    id_categoria = get_or_create("categoria", "nome", categoria)
+    id_tipo = get_or_create("tipo_produto", "nome", tipo_produto)
+    id_genero = get_or_create("generos", "genero", genero)
+    id_marca = get_or_create("marcas", "nomemarca", marca)
+    id_cor = get_or_create("cores", "nomecor", cor)
+    id_tamanho = get_or_create("tamanho", "tamanho", tamanho)
+
+    # Note: In the new schema, tipo_produto has id_categoria. We should update it if needed or check consistency.
+    # For simplicity, we assume the user selected compatible types.
+    
     db = conectar()
     cursor = db.cursor()
     sql = """
