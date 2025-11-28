@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const textFinal = 'FAQ';
 
         const typeSpeed = 40;
-        const eraseSpeed = 20;
+        const eraseSpeed = 15;
 
         let charIndex = 0;
         let phase = 1; // 1 = Digitar Longo, 2 = Apagar, 3 = Digitar Curto
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (charIndex === textLong.length) {
                     phase = 2;
-                    setTimeout(typeFaqSequence, 1000); // Pausa 1s antes de apagar
+                    setTimeout(typeFaqSequence, 750); // Pausa 1s antes de apagar
                     return;
                 }
                 setTimeout(typeFaqSequence, typeSpeed);

@@ -36,11 +36,50 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;    
+}
+
+/* Icones sem dependencia de Font Awesome */
+.fa,
+.fa-solid,
+.fa-regular {
+    display: inline-block;
+    line-height: 1;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.fa-regular {
+    font-weight: 400;
+}
+
+.fa-star::before {
+    content: "★";
+}
+
+.fa-regular.fa-star::before {
+    content: "☆";
+}
+
+.fa-check::before {
+    content: "✓";
+}
+
+.fa-xmark::before,
+.fa-times::before {
+    content: "✕";
+}
+
+.fa-chevron-left::before {
+    content: "‹";
+}
+
+.fa-chevron-right::before {
+    content: "›";
 }
 
 body {
     margin: 0;
-    font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
     background:
         radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.14), transparent 32%),
         radial-gradient(circle at 80% 10%, rgba(245, 158, 11, 0.12), transparent 28%),
@@ -65,6 +104,7 @@ a {
 main {
     padding-top: 6rem;
 }
+
 
 .header-container {
     z-index: 10000;
@@ -138,19 +178,16 @@ main {
 
 /* botão fishing */
 @keyframes pulse-fishing {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.03);
-    }
+    0%   { box-shadow: 0 0 0 0 rgba(249,115,22,.5); }
+    70%  { box-shadow: 0 0 0 12px rgba(249,115,22,0); }
+    100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); }
   }
   
   .fishing-button {
       padding: 0.6rem 1.4rem;
       background-color: var(--accent-amber);
-      color: var(--blue-900);
-      border-radius: 10px;
+      color: var(--text-dark);
+      border-radius: 15px;
       border: none;
       cursor: pointer;
       font-weight: 550;
@@ -158,13 +195,11 @@ main {
       text-transform: none;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
       transition: all 0.3s !important;
-  
       animation: pulse-fishing 1s ease-in-out infinite;
   }
 
 .fishing-button:hover {
-    animation-play-state: paused;
-    background-color: var(--orange-500) !important;
+    transform: scale(1.111) !important;
 }
 
 .nav-links {
@@ -269,8 +304,7 @@ main {
 
 .about-button:hover,
 .download-button:hover {
-    transform: translateY(-1.5px);
-    background-color: var(--orange-500);
+    transform: translateY(-3px) scale(1.05);
 }
 
 .hero-image {
@@ -523,37 +557,44 @@ main {
     border-radius: 50%;
     box-shadow: var(--shadow-soft);
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    /* Remove padding padrão do navegador que atrapalha */
-
-    font-size: 1.2rem;
     color: var(--text-primary);
-    transition: transform 0.2s, background 0.2s;
+    transition: all 0.3s !important;
     z-index: 10;
     flex-shrink: 0;
 }
 
-/* Ajuste Fino (O Pulo do Gato) */
-/* Isso corrige o centro óptico da seta */
-.carousel-btn .fa-chevron-right {
-    margin-left: 4px;
-    margin-top: 2px;
+.prev-btn {
+    --arrow-rotation: 90deg;
 }
 
-.carousel-btn .fa-chevron-left {
-    margin-right: 4px;
-    /* O mesmo para a seta da esquerda, mas ao contrário */
-    margin-top: 2px;
+.next-btn {
+    --arrow-rotation: -90deg;
+}
+
+.carousel-arrow {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-color: currentColor;
+    mask: url('Assets/icons/arrow.svg') center / contain no-repeat;
+    -webkit-mask: url('Assets/icons/arrow.svg') center / contain no-repeat;
+    transform: rotate(var(--arrow-rotation));
+    transition: all 0.3s ease;
 }
 
 .carousel-btn:hover {
-    background: linear-gradient(120deg, var(--accent-amber), var(--orange-500));
-    color: #fff;
+    background: linear-gradient(90deg, var(--accent-amber), var(--orange-500));
     transform: scale(1.1);
+}
+
+
+.carousel-btn:hover .carousel-arrow {
+    background-color: #fff;
+    transform: rotate(var(--arrow-rotation)) scale(1.1);
 }
 
 /* Mantém o estilo interno dos cards igual */
@@ -906,10 +947,14 @@ main {
 
 /* Seta */
 .faq-arrow {
-    color: var(--orange-300);
-    font-size: 1rem;
-    transition: transform 0.3s ease;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
     margin-left: 1rem;
+    background-color: var(--orange-300);
+    mask: url('Assets/icons/arrow.svg') center / contain no-repeat;
+    -webkit-mask: url('Assets/icons/arrow.svg') center / contain no-repeat;
+    transition: transform 0.3s ease;
 }
 
 /* Corpo da Resposta (Animação) */
@@ -976,8 +1021,8 @@ main {
     justify-content: flex-end;
 }
 
-.btn-fishing2 {
-    margin: 0 0 0.5rem 0;
+.header-fishing {
+    margin: 0 0 1rem 0;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.85rem;
@@ -990,39 +1035,10 @@ main {
     font-size: clamp(1.4rem, 3vw, 2rem);
 }
 
+
 .fishing-cta .cta-subtext {
     margin: 0.5rem 0 0;
     color: var(--text-secondary);
-}
-
-.fishing-cta .cta-button {
-    padding: 0.75rem 1.4rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    background: linear-gradient(120deg, var(--accent-amber), var(--orange-500));
-    color: #fff;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: var(--shadow-strong);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-    text-align: center;
-}
-
-.fishing-cta .cta-button:hover {
-    transform: translateY(-2px);
-}
-
-
-.fishing-cta .cta-button.ghost {
-    background: transparent;
-    color: var(--text-primary);
-    border-color: rgba(255, 255, 255, 0.28);
-    box-shadow: none;
-}
-
-.fishing-cta .cta-button.ghost:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
@@ -1035,6 +1051,27 @@ main {
         justify-content: flex-start;
     }
 }
+
+/* botões */
+
+.cta-button {
+    padding: 0.6rem 1.4rem;
+    background-color: var(--accent-amber);
+    color: var(--blue-900);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 550;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s !important;
+}
+
+.cta-button:hover {
+  background-color: var(--orange-500) !important;
+}
+
 
 /* FOOTER */
 
