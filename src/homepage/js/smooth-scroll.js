@@ -163,7 +163,9 @@
     if (prefersReducedMotion && prefersReducedMotion.matches) {
       window.__lenisInitialized = true;
       console.info('[smooth-scroll] Reduced-motion preference detected; Lenis disabled.');
-      wireAnchorLinks(null);
+      const rewireAnchors = () => wireAnchorLinks(null);
+      rewireAnchors();
+      document.addEventListener('partials:loaded', rewireAnchors);
       attachCollectionWatchers(parallaxManager);
       window.addEventListener(
         'scroll',
@@ -177,7 +179,9 @@
     if (typeof LenisCtor !== 'function') {
       window.__lenisInitialized = true;
       console.warn('[smooth-scroll] Lenis library was not loaded; falling back to native smooth scroll.');
-      wireAnchorLinks(null);
+      const rewireAnchors = () => wireAnchorLinks(null);
+      rewireAnchors();
+      document.addEventListener('partials:loaded', rewireAnchors);
       attachCollectionWatchers(parallaxManager);
       window.addEventListener(
         'scroll',
@@ -202,7 +206,9 @@
     } catch (error) {
       window.__lenisInitialized = true;
       console.error('[smooth-scroll] Failed to initialize Lenis; using native scroll.', error);
-      wireAnchorLinks(null);
+      const rewireAnchors = () => wireAnchorLinks(null);
+      rewireAnchors();
+      document.addEventListener('partials:loaded', rewireAnchors);
       attachCollectionWatchers(parallaxManager);
       window.addEventListener(
         'scroll',
@@ -225,7 +231,9 @@
       parallaxManager.update(scroll);
     });
 
-    wireAnchorLinks(lenis);
+    const rewireAnchors = () => wireAnchorLinks(lenis);
+    rewireAnchors();
+    document.addEventListener('partials:loaded', rewireAnchors);
     attachCollectionWatchers(parallaxManager, () => lenis.resize());
 
     if (prefersReducedMotion) {

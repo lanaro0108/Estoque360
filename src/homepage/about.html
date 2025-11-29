@@ -11,12 +11,14 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet"/>
+  <link rel="icon" href="Assets/icons/LogoIcon.png">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/scroll.css" />
   <link rel="stylesheet" href="css/about.css">
 </head>
 
 <body id="top">
+  <div id="header-placeholder" data-partial="header"></div>
   <h1 class="title">Sobre n&oacute;s</h1>
   <h2 class="subtitle">Conhe&ccedil;a nossa equipe!</h2>
 
@@ -107,12 +109,16 @@
     </div>
   </section>
 
+  <div id="footer-placeholder" data-partial="footer"></div>
+
+  <script defer src="js/partials-loader.js"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script defer src="js/smooth-scroll.js"></script>
   <script src="js/typewriter.js"></script>
   <script src="js/momentum-hold.js"></script>
   <script src="js/animation.js"></script>
   <script src="js/header-shape.js"></script>
+  <script src="js/header-actions.js"></script>
   <script>
     const photoBtn = document.getElementById('team-icon');
 
