@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cadastrar Cliente</h2>
+
+<form method="POST">
+
+    <label>CPF:</label>
+    <input name="cpf" placeholder="000.000.000-00" required>
+
+    <label>Nome:</label>
+    <input name="nome" placeholder="Nome do cliente" required>
+
+    <label>CEP:</label>
+    <input name="cep" placeholder="00000-000" required>
+
+    <label>Número:</label>
+    <input name="numero" placeholder="Número..." required>
+
+    <label>Complemento:</label>
+    <input name="complemento" placeholder="Opcional">
+
+    <label>Telefone:</label>
+    <input name="telefone" placeholder="(00) 00000-0000">
+
+    <label>Email:</label>
+    <input name="email" placeholder="email@exemplo.com">
+
+    <button type="submit">Salvar Cliente</button>
+</form>
+
+{% endblock %}

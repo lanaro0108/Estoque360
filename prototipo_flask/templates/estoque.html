@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Estoque Atual</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Tipo</th>
+        <th>Marca</th>
+        <th>Cor</th>
+        <th>Tamanho</th>
+        <th>Quantidade</th>
+    </tr>
+
+    {% for item in estoque %}
+    <tr>
+        <td>{{ item[0] }}</td>
+        <td>{{ item[1] }}</td>
+        <td>{{ item[2] }}</td>
+        <td>{{ item[3] }}</td>
+        <td>{{ item[4] }}</td>
+        <td>{{ item[5] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

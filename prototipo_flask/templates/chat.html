@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Assistente Estoque360 🤖</h2>
+
+<div class="chat-box">
+    {% for msg in mensagens %}
+    <div class="msg {{ msg.role }}">
+        <strong>{{ msg.role }}:</strong> {{ msg.content }}
+    </div>
+    {% endfor %}
+</div>
+
+<form method="POST" class="chat-form">
+    <input name="mensagem" placeholder="Digite sua pergunta..." required>
+    <button type="submit">Enviar</button>
+</form>
+
+{% endblock %}
