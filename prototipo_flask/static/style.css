@@ -1,0 +1,143 @@
+body {
+    background: #f2f2f2;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background: #222;
+    padding: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.container {
+    background: white;
+    width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+input, button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+}
+
+button {
+    background: #007bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #005ad1;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #bbb;
+    padding: 6px;
+    text-align: center;
+}
+
+.flash {
+    padding: 10px;
+    background: #d3ffd8;
+    border: 1px solid #64d37b;
+    margin-bottom: 10px;
+}
+
+.chat-box {
+    background: #eee;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.msg.user { color: blue; }
+.msg.assistant { color: green; }
+
+/* BOTÃO FLUTUANTE */
+#chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px #0005;
+}
+
+/* JANELA DO CHAT */
+#chat-window {
+    position: fixed;
+    bottom: 95px;
+    right: 20px;
+    width: 320px;
+    height: 420px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 12px #0005;
+    display: none;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+#chat-header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#close-chat {
+    float: right;
+    cursor: pointer;
+}
+
+#chat-messages {
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    background: #f7f7f7;
+}
+
+.msg.user { color: blue; margin-bottom: 8px; }
+.msg.assistant { color: green; margin-bottom: 8px; }
+
+#chat-form {
+    display: flex;
+}
+
+#chat-form input {
+    flex: 1;
+}
+
+#chat-form button {
+    width: 80px;
+    background: #007bff;
+    color: white;
+    border: none;
+}
