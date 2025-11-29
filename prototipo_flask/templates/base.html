@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+    <meta charset="UTF-8">
+    <title>Estoque360</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="/">Início</a>
+        <a href="/produtos">Produtos</a>
+        <a href="/fornecedores">Fornecedores</a>
+        <a href="/compras">Compras</a>
+        <a href="/clientes">Clientes</a>
+        <a href="/vendas">Vendas</a>
+        <a href="/estoque">Estoque</a>
+    </nav>
+
+    <div class="container">
+        {% with msgs = get_flashed_messages() %}
+        {% if msgs %}
+        <div class="flash">{{ msgs[0] }}</div>
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <div id="chat-button" onclick="openChat()">
+        🤖
+    </div>
+
+    <div id="chat-window">
+
+        <div id="chat-header">
+            Assistente Estoque360 🤖
+            <span id="close-chat" onclick="closeChat()">✖</span>
+        </div>
+
+        <div id="chat-messages">
+            {% if session.last_answer %}
+            <div class="msg assistant">{{ session.last_answer }}</div>
+            {% endif %}
+        </div>
+
+        <form id="chat-form" method="POST" action="/chatbot">
+            <input type="text" name="mensagem" placeholder="Digite sua mensagem..." required>
+            <button type="submit">Enviar</button>
+        </form>
+
+    </div>
+
+    <script>
+        function openChat() {
+            document.getElementById("chat-window").style.display = "block";
+            localStorage.setItem("chat_open", "1");
+        }
+
+        function closeChat() {
+            document.getElementById("chat-window").style.display = "none";
+            localStorage.setItem("chat_open", "0");
+        }
+
+        window.onload = function () {
+            const wasOpen = localStorage.getItem("chat_open");
+            if (wasOpen === "1") {
+                document.getElementById("chat-window").style.display = "block";
+            }
+        };
+    </script>
+
+</body>
+
+</html>
