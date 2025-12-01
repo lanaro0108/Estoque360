@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque 360</title>
+    <link rel="icon" href="logoicon.png" type="image/jpg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+        }
+
+        header {
+            background-color: #1a659e;
+            text-align: center;
+            display: block;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+
+        .botao {
+            border-radius: 5px;
+            background-color: #1a659e;
+            margin: 30px;
+            width: 200px;
+            height: 60px;
+            font-size: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .imagem {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            border: solid #ffbb00 3px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            width: 250px;
+        }
+
+        .imagem:hover {
+            transform: scale(1.05);
+            z-index: 10;
+
+        }
+
+        .botao:hover {
+            background-color: #ffbb00;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="assets/logoestoque-removebg-preview.png" alt="logo" width="250px">
+    </header>
+    <main class="container">
+
+        <div class="imagem">
+            <img src="assets/pagina.png" alt="Desenho Página Web" width="150px">
+            <a class="botao" href="https://estoque.muski.workers.dev/" target="_blank">
+                PÁGINA INSTITUCIONAL
+            </a>
+        </div>
+
+        <div class="imagem">
+            <img src="assets/merder.png" alt="Desenho de ER" width="150px">
+            <a class="botao" href="mer.html" target="_blank">
+                MER
+            </a>
+        </div>
+
+        <div class="imagem">
+            <img src="assets/merder.png" alt="Desenho de ER" width="150px">
+            <a class="botao" href="der.html" target="_blank">
+                DER
+            </a>
+        </div>
+
+        <div class="imagem">
+            <img src="assets/banco.png" alt="Desenho Folhas" width="150px">
+            <a class="botao" href="https://github.com/lanaro0108/Estoque360/blob/main/BancoDeDados/dbEstoque360.sql"
+                target="_blank">
+                BANCO DE DADOS
+            </a>
+        </div>
+
+        <div class="imagem">
+            <img src="assets/sitemap.png" alt="Desenho Site Map" width="150px">
+            <a class="botao" href="assets/SiteMap (1).png" target="_blank">
+                SITE MAP
+            </a>
+        </div>
+
+        <div class="imagem">
+            <img src="assets/app.png" alt="Desenho Celular" width="150px">
+            <a class="botao" href="https://estoque360.streamlit.app/">
+                PROTÓTIPO
+            </a>
+        </div>
+
+        <div class="imagem">
+            <a href="assets/mockup_estoque360.pdf" download>
+                <img src="assets/WhatsApp Image 2025-10-23 at 20.33.48.jpg" alt="logo cabide" width="160px">
+            </a>
+
+            <a class="botao" href="assets/mockup_estoque360.pdf" download>
+                MOCKUP
+            </a>
+        </div>
+
+
+
+        <div class="imagem">
+            <img src="assets/metodologia.png" alt="Desenho Relógio" width="150px">
+            <a class="botao" href="https://www.meistertask.com/app/project/tLehPZ2h/controle-de-estoque"
+                target="_blank">
+                METODOLOGIA ÁGIL
+            </a>
+        </div>
+
+        <div class="imagem">
+            <img src="assets/cronograma.png" alt="Desenho Calendário" width="150px">
+            <a class="botao"
+                href="https://www.canva.com/design/DAGzKgCRhfw/nN0uOw5KqmPfNYrBfyaEvg/edit?utm_content=DAGzKgCRhfw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+                target="_blank">
+                CRONOGRAMA
+            </a>
+        </div>
+
+        <div class="imagem">
+            <img src="assets/github.png" alt="GitHub Icon" width="150px">
+            <a class="botao" href="https://github.com/lanaro0108/Estoque360">
+                GIT HUB
+            </a>
+        </div>
+
+        <div class="imagem">
+            <img src="assets/anotacao.png" alt="Desenho Folha" width="150px">
+            <a class="botao"
+                href="https://sesisenaispedu-my.sharepoint.com/:w:/g/personal/ana_leonardi_portalsesisp_org_br/IQCK3bY0j8v4TqPXFHQxXxqEAcWr_WasqdwDo9Da_1tsVEI?e=qknGbd"
+                target="_blank">
+                ANOTAÇÕES
+            </a>
+        </div>
+    </main>
+</body>
+</html>
