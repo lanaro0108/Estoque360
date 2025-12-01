@@ -12,7 +12,7 @@ from openai import OpenAI
 load_dotenv()
 criar_tabelas()
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 st.markdown("""
     <style>
@@ -97,8 +97,8 @@ COMPORTAMENTO DO ASSISTENTE:
         st.session_state.messages.append({"role": "user", "content": pergunta})
 
         resposta = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=st.session_state.messages
+        model="gpt-4o-mini",
+        messages=st.session_state.messages
         )
 
         texto = resposta.choices[0].message.content
@@ -348,3 +348,4 @@ elif pagina == "Estoque":
     db.close()
 
     st.table(data)
+
