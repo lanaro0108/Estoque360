@@ -109,7 +109,7 @@ def load_image_base64(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-logo_base64 = load_image_base64("assets/estoque360_master (1).png")
+logo_base64 = load_image_base64("src/prototipos/assets/estoque360_master (1).png")
 
 st.markdown(
     f"""
